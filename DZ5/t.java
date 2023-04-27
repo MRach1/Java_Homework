@@ -16,9 +16,9 @@ public class t {
         Scanner in = new Scanner(System.in);
         int choice = 0;
         System.out.println(phoneBook);
-        while (choice != 6){
+        while (choice != 5){
         System.out.println();
-        System.out.println("Выберите действие:\n1 - Добавить номер \n2 - Поиск имени владельца телефона по номеру \n3 - Поиск номеров по имени владельца\n4 - Удалить номер \n5 - Вывести книгу \n6 - Выйти");
+        System.out.println("Выберите действие:\n1 - Добавить номер \n2 - Поиск имени владельца телефона по номеру \n3 - Удалить номер \n4 - Вывести книгу \n5 - Выйти");
         choice = in.nextInt();
         int num = 0;
         String nam = "";
@@ -41,19 +41,11 @@ public class t {
                 System.out.println(numSearch(num, phoneBook));
                 break;
             case (3):
-                System.out.println("Введите имя: ");
-                nam = in.next();
-                System.out.println("Введите фамилию: ");
-                surn = in.next();
-                namE = nam + " " + surn;
-                System.out.println(nameSearch(namE, phoneBook));
-                break;
-            case (4):
                 System.out.println("Введите номер телефона: ");
                 num = in.nextInt();
                 delete(num, phoneBook);
                 break;
-            case (5):
+            case (4):
                 for (int i: phoneBook.keySet()){
                     System.out.print(phoneBook.get(i));
                     System.out.print(" - ");
@@ -68,17 +60,6 @@ public class t {
     }
     public static String numSearch(int num, HashMap<Integer, String> pb){
         return pb.get(num);
-    }
-    public static ArrayList<Integer> nameSearch(String name, HashMap<Integer, String> pb){
-        ArrayList<Integer> numbers = new ArrayList<>(pb.size()); 
-        for (int number: pb.keySet()){
-            System.out.println(pb.get(number));
-            if (pb.get(number) == name){
-                numbers.add(number);
-                System.out.println(number);
-            }
-        }
-        return numbers;
     }
     public static void delete(int num, HashMap<Integer, String> pb) {
         pb.remove(num);
