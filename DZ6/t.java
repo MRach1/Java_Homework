@@ -1,62 +1,68 @@
 package DZ6;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class t {
+    public static class Notebook {
+        private int RAM;
+        private int HDD;
+        private int OS;
+        private int color;
+        private int price;
+        private String name;
+    }
+
+
     public static void print(Object o){
         System.out.println(o);
     }
-    //public static 
+
+
+
     public static void main(String[] args) {
-        Notebook acer = new Notebook();
-        Notebook samsung = new Notebook();
-        Notebook asus = new Notebook();
-        Notebook xiaomi = new Notebook();
-        Notebook apple = new Notebook();
+        Notebook n1 = new Notebook();
+        Notebook n2 = new Notebook();
+        Notebook n3 = new Notebook();
+        Notebook n4 = new Notebook();
+        Notebook n5 = new Notebook();
         {
-            acer.RAM = 4;
-            acer.HDD = 512;
-            acer.OS = "Windows";
-            acer.color = "black";
-            acer.price = 30000;
-            samsung.RAM = 8;
-            samsung.HDD = 1024;
-            samsung.OS = "Windows";
-            samsung.color = "grey";
-            samsung.price = 50000;
-            xiaomi.RAM = 6;
-            xiaomi.HDD = 1024;
-            xiaomi.OS = "Linux";
-            xiaomi.color = "white";
-            xiaomi.price = 35000;
-            asus.RAM = 16;
-            asus.HDD = 2048;
-            asus.OS = "Linux";
-            asus.color = "black";
-            asus.price = 45000;
-            apple.RAM = 8;
-            apple.HDD = 1024;
-            apple.OS = "Mac";
-            apple.color = "white";
-            apple.price = 60000;
+            n1.RAM = 4;
+            n1.HDD = 512;
+            n1.OS = 1;
+            n1.color = 1;
+            n1.price = 30000;
+            n1.name = "Lenovo A3";
+            n2.RAM = 8;
+            n2.HDD = 1024;
+            n2.OS = 1;
+            n2.color = 2;
+            n2.price = 50000;
+            n2.name = "Samsung S2";
+            n4.RAM = 6;
+            n4.HDD = 1024;
+            n4.OS = 2;
+            n4.color = 3;
+            n4.price = 35000;
+            n4.name = "Xiaomi X7";
+            n3.RAM = 16;
+            n3.HDD = 2048;
+            n3.OS = 2;
+            n3.color = 1;
+            n3.price = 45000;
+            n3.name = "Asus U10";
+            n5.RAM = 8;
+            n5.HDD = 1024;
+            n5.OS = 3;
+            n5.color = 3;
+            n5.price = 60000;
+            n5.name = "Apple G4";
         }
-        HashSet nbs = new HashSet<Notebook>(Arrays.asList(acer, samsung, asus, xiaomi, apple));
-        HashMap characteristics = new HashMap<Integer, String>();
-        {
-            characteristics.put(1, "RAM");
-            characteristics.put(2, "HDD");
-            characteristics.put(3, "OS");
-            characteristics.put(4, "color");
-            characteristics.put(5, "price");
-        }
-        for (int i = 1; i<6; i++){
-            System.out.printf("%d - %s \n", i, characteristics.get(i).toString());
-        }
+        System.out.println("1 - RAM\n2 - HDD\n3 - OS\n4 - Color\n5 - Price");
         int par = 0;
-        String parm = "";
         print("Выберите номер нужной характеристики:");
         Scanner in = new Scanner(System.in);
         int choice = in.nextInt();
@@ -70,21 +76,57 @@ public class t {
                 par = in.nextInt();
                 break;
             case (3):
-                print("Выберите операционную систему (Windows/Linux/Mac): ");
-                parm = in.next();
+                print("Выберите операционную систему \nWindows - 1\nLinux - 2\nMac - 3");
+                par = in.nextInt();
                 break;
             case (4):
-                print("Выберите цвет (black/grey/white): ");
-                parm = in.next();
+                print("Выберите цвет \nblack - 1 \ngrey - 2 \nwhite - 3");
+                par = in.nextInt();
                 break;
             case (5):
                 print("Введите минимальную цену: ");
                 par = in.nextInt();
                 break;
         }
-        for (Object j:nbs){
-            String ch = characteristics.get(choice).toString();
-            print(j.getClass());
+        Notebook[] ex = new Notebook[5];
+        ex[0] = n3;
+        ex[1] = n5;
+        ex[2] = n4;
+        ex[3] = n2;
+        ex[4] = n1;
+        print("По вaшим параметрам подходят следующие ноутбуки:");
+        for (Notebook a: ex){
+            switch (choice){
+                case (1):
+                    if (a.RAM >= par){
+                        print(a.name);
+                    }
+                    break;
+                case (2):
+                    if (a.HDD >= par){
+                        print(a.name);
+                    }
+                    break;
+                case (3):
+                    if (a.OS == par){
+                        print(a.name);
+                    }
+                    break;
+                case (4):
+                if (a.color == par){
+                    print(a.name);
+                }
+                    break;
+                case (5):
+                if (a.price >= par){
+                    print(a.name);
+                }
+                    break;
+            }
         }
+
     }
+
+
+
 }
